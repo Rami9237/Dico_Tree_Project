@@ -36,7 +36,7 @@ int main(int argc, char **argv)
       wordsdico[i] = (char*)malloc((strlen(buffer) + 1) * sizeof(char));
       strcpy(wordsdico[i], buffer); 
     }
-    printf("\n Voici l'arbre cree");
+    printf("\n Voici l arbre cree \n");
     dicoAfficher(dico);
     printf("\n");  
     for (int i=0;i<nbdico;i++)
