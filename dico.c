@@ -30,10 +30,6 @@ int dicoNbOcc(char mot[], TArbre a)
 
 
 
-/* ------------------------------------------------------- */
-/* Ent�tes des fonctions locales � cette biblioth�que      */
-/* ------------------------------------------------------- */
-
 void _dicoAfficher(TArbre a, char prefixe[], int pos)
 {
   if (!arbreEstVide(a))
@@ -71,13 +67,13 @@ void _dicoInsererMot(char mot[], int debut, TArbre *pa)
 	_dicoInsererMot(mot, debut+1, &((*pa)->filsGauche));
     }
   else if (mot[debut] > arbreRacineLettre(*pa))
-    /* 3�me cas: le mot ne commence pas par la m�me lettre que le */
+    /* 3eme cas: le mot ne commence pas par la meme lettre que le */
     /* premier mot (courant) du dictionnaire */
     {
       _dicoInsererMot(mot, debut, &((*pa)->filsDroit));
     }
   else
-    /* 4�me cas: le mot � ins�rer commence par la m�me lettre que */
+    /* 4eme cas: le mot a inserer commence par la meme lettre que */
     /* le premier mot (courant) du dictionnaire */
     {
       if (debut == strlen(mot))
@@ -95,20 +91,20 @@ int _dicoNbOcc(char mot[], int debut, TArbre a)
     /* 1er cas: le dictionnaire est vide */
     return 0;
   else if (debut > strlen(mot))
-    /* 2�me cas: le mot tel quel n'existe pas */
+    /* 2eme cas: le mot tel quel n'existe pas */
     return 0;
   else if (mot[debut] < arbreRacineLettre(a))
-    /* 3�me cas: le mot cherch� aurait d� �tre avant dans le dico */
+    /* 3eme cas: le mot cherche aurait du etre avant dans le dico */
     return 0;
   else if (mot[debut] == arbreRacineLettre(a))
-    /* 4�me cas: le mot commence par la m�me lettre que le premier */
+    /* 4eme cas: le mot commence par la m�me lettre que le premier */
     /* mot du dictionnaire */
     if (mot[debut] == '\0')
       return arbreRacineNbOcc(a);
     else
       return _dicoNbOcc(mot, debut+1, arbreFilsGauche(a));
   else
-    /* 5 �me cas: le mot est �ventuellement plus loin dans le dico */
+    /* 5 eme cas: le mot est �ventuellement plus loin dans le dico */
     return _dicoNbOcc(mot, debut, arbreFilsDroit(a));
 }
 

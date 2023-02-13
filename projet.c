@@ -4,6 +4,7 @@
 #include <ctype.h>
 #include "dico.h"
 #include <string.h>
+
 #define MAX_WORDS 1000 // max words in file
 
 /* ------------------------------------------------------- */
@@ -107,6 +108,39 @@ void InsererMots(TArbre *dico, char **wordsdico, int wordCount)
     dicoInsererMot(wordsdico[i], dico);
   }
 }
+
+// delete duplicates in dico array 
+void delete_duplicates(char** arr, int* n) {
+    int i, j;
+    for (i = 0; i < *n; i++) {
+        for (j = i + 1; j < *n; j++) {
+            if (strcmp(arr[i], arr[j]) == 0) {
+                // if duplicate found, remove it
+                int k;
+                for (k = j; k < *n - 1; k++) {
+                    arr[k] = arr[k + 1];
+                }
+                (*n)--;
+                j--;
+            }
+        }
+    }
+}
+
+void Affichagetitre(char title[]){
+    int title_length = strlen(title);
+    int padding = (80 - title_length) / 2;
+    int i;
+    for (i = 0; i < padding; i++) {
+        printf("=");
+    }
+    printf(" %s ", title);
+    for (i = 0; i < padding; i++) {
+        printf("=");
+    }
+    printf("\n");
+}
+
 /* ------------------------------------------------------- */
 
 int main(int argc, char **argv)
@@ -117,7 +151,8 @@ int main(int argc, char **argv)
   char buffer[100];
   char **wordsdico;
   dico = arbreConsVide();
-
+  Affichagetitre("ARBRE DICTIONNAIRE");
+  
   printf("Choisissez une option :\n[1] Entrer manuellement les mots du dictionnaire.\n[2] Utiliser un fichier pour ajouter les mots.\n");
   scanf("%s", input);
 
@@ -131,6 +166,8 @@ int main(int argc, char **argv)
     printf("\n Voici l arbre cree \n");
     dicoAfficher(dico);
     printf("\n");
+
+    delete_duplicates(wordsdico, &count);
     for (int i = 0; i < count; i++)
     {
       printf("\"%s\" \t -> %d\n", wordsdico[i], dicoNbOcc(wordsdico[i], dico));
@@ -148,6 +185,8 @@ int main(int argc, char **argv)
     printf("\n Voici l arbre cree \n");
     dicoAfficher(dico);
     printf("\n");
+
+    delete_duplicates(wordsdico, &count);
     for (int i = 0; i < count; i++)
     {
       printf("\"%s\" \t -> %d\n", wordsdico[i], dicoNbOcc(wordsdico[i], dico));
