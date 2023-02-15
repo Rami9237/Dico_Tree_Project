@@ -152,6 +152,8 @@ int main(int argc, char **argv)
     {
       printf("\"%s\" \t -> %d\n", wordsdico[i], dicoNbOcc(wordsdico[i], dico));
     }
+    printf("why the fuck isnt it printing  :\n ");
+    print_tree(dico);
   }
   freearray(wordsdico, count);
 }
