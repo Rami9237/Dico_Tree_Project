@@ -143,16 +143,15 @@ int main(int argc, char **argv)
     scanf("%s", &fileName);
 
     wordsdico = readWordsFile(fileName, &count);
-    printf("Read %d words:\n", count);
+    // printf("Read %d words:\n", count);
     InsererMots(&dico, wordsdico, count);
-    printf("\n Voici l arbre cree \n");
-    dicoAfficher(dico);
-    printf("\n");
-    for (int i = 0; i < count; i++)
-    {
-      printf("\"%s\" \t -> %d\n", wordsdico[i], dicoNbOcc(wordsdico[i], dico));
-    }
-    printf("why the fuck isnt it printing  :\n ");
+    // printf("\n Voici l arbre cree \n");
+    // dicoAfficher(dico);
+    // printf("\n");
+    // for (int i = 0; i < count; i++)
+    // {
+    //   printf("\"%s\" \t -> %d\n", wordsdico[i], dicoNbOcc(wordsdico[i], dico));
+    // }
     print_tree(dico);
   }
   freearray(wordsdico, count);
