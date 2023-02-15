@@ -1,0 +1,38 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "/msys64/mingw64/bin/../include/gtk-4.0",
+                "/msys64/mingw64/bin/../include/pango-1.0",
+                "/msys64/mingw64/bin/../include",
+                "/msys64/mingw64/bin/../include/glib-2.0",
+                "/msys64/mingw64/bin/../lib/glib-2.0/include",
+                "/msys64/mingw64/bin/../include/harfbuzz",
+                "/msys64/mingw64/bin/../include/freetype2",
+                "/msys64/mingw64/bin/../include/libpng16",
+                "/msys64/mingw64/bin/../include/fribidi",
+                "/msys64/mingw64/bin/../include/cairo",
+                "/msys64/mingw64/bin/../include/lzo",
+                "/msys64/mingw64/bin/../include/pixman-1",
+                "/msys64/mingw64/bin/../include/gdk-pixbuf-2.0",
+                "/msys64/mingw64/bin/../include/webp",
+                "/msys64/mingw64/bin/../include/graphene-1.0",
+                "/msys64/mingw64/bin/../lib/graphene-1.0/include",
+                "${workspaceFolder}/**"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "compilerPath": "C:/msys64/mingw64/bin/gcc.exe",
+            "compilerArgs": ["`pkg-config --cflags --libs gtk4`"],
+            "cStandard": "gnu17",
+            "cppStandard": "gnu++17",
+            "intelliSenseMode": "windows-gcc-x64",
+            "configurationProvider": "ms-vscode.makefile-tools"
+        }
+    ],
+    "version": 4
+}
