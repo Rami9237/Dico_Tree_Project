@@ -6,6 +6,7 @@
 void _dicoAfficher(TArbre a, char prefixe[], int pos);
 void _dicoInsererMot(char mot[], int debut, TArbre *pa);
 int  _dicoNbOcc(char mot[], int debut, TArbre a);
+void _print_tree(TArbre a);
 
 void dicoAfficher(TArbre a)
 {
@@ -28,6 +29,11 @@ int dicoNbOcc(char mot[], TArbre a)
   return _dicoNbOcc(mot, 0, a);
 }
 
+void print_tree(TArbre a)
+{ 
+  _print_tree(a);
+   
+}
 
 
 void _dicoAfficher(TArbre a, char prefixe[], int pos)
@@ -42,6 +48,42 @@ void _dicoAfficher(TArbre a, char prefixe[], int pos)
       _dicoAfficher(arbreFilsGauche(a), prefixe, pos+1);
       _dicoAfficher(arbreFilsDroit(a), prefixe, pos);
     }
+}
+
+/* - - - - - - - - - - -  -- - - -  -- -  -- - -  -- -  -- */
+// void print_tree_helper(TArbre a,char prefixe[], int pos, int space) {
+//     if (arbreEstVide(a)) {
+//         return;
+//     }
+
+//     space += 4;
+
+//     print_tree_helper(arbreFilsGauche(a),prefixe,pos+1,space);
+
+//     printf("\n");
+//     for (int i = 10; i < space; i++) {
+//         printf(" ");
+//     }
+//     prefixe[pos] = arbreRacineLettre(a);
+//     if (arbreRacineLettre(a) == '\0')
+// 	    printf("%c", arbreRacineLettre(a));
+
+//     print_tree_helper(arbreFilsDroit(a),prefixe,pos,space);
+// }
+
+void print_tree_helper(TArbre a)
+{
+  if (!arbreEstVide(a)) {
+        printf("%c ", arbreRacineLettre(a));
+        print_tree_helper(arbreFilsGauche(a));
+        print_tree_helper(arbreFilsDroit(a));
+    }
+}
+
+void _print_tree(TArbre a) {
+    char buffer[100];
+    print_tree_helper(a);
+    
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

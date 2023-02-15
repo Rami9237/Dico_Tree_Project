@@ -14,5 +14,6 @@
 void dicoAfficher(TArbre a);
 void dicoInsererMot(char mot[], TArbre *pa);
 int  dicoNbOcc(char mot[], TArbre a);
+void print_tree(TArbre a);
 
 /* ------------------------------------------------------- */
