@@ -36,6 +36,10 @@ void print_tree(TArbre a)
 }
 
 
+/* ------------------------------------------------------- */
+/* Ent�tes des fonctions locales � cette biblioth�que      */
+/* ------------------------------------------------------- */
+
 void _dicoAfficher(TArbre a, char prefixe[], int pos)
 {
   if (!arbreEstVide(a))
@@ -71,18 +75,24 @@ void _dicoAfficher(TArbre a, char prefixe[], int pos)
 //     print_tree_helper(arbreFilsDroit(a),prefixe,pos,space);
 // }
 
-void print_tree_helper(TArbre a)
+void print_tree_helper(TArbre a,char* prefix,int isLeft)
 {
-  if (!arbreEstVide(a)) {
-        printf("%c ", arbreRacineLettre(a));
-        print_tree_helper(arbreFilsGauche(a));
-        print_tree_helper(arbreFilsDroit(a));
+
+ if (!arbreEstVide(a)) {
+
+        if (arbreRacineLettre(a) == '\0')
+          printf("%s%s%c\n", prefix, (isLeft ? "|-- " : "-- "), "0");
+        else
+          printf("%s%s%c\n", prefix, (isLeft ? "|-- " : "-- "), arbreRacineLettre(a));
+        char newPrefix[50];
+        sprintf(newPrefix, "%s%s", prefix, (isLeft ? "|   " : "    "));
+        print_tree_helper(arbreFilsGauche(a),newPrefix, 1);
+        print_tree_helper(arbreFilsDroit(a),newPrefix, 0);
     }
 }
 
 void _print_tree(TArbre a) {
-    char buffer[100];
-    print_tree_helper(a);
+    print_tree_helper(a,"",0);
     
 }
 
@@ -109,13 +119,13 @@ void _dicoInsererMot(char mot[], int debut, TArbre *pa)
 	_dicoInsererMot(mot, debut+1, &((*pa)->filsGauche));
     }
   else if (mot[debut] > arbreRacineLettre(*pa))
-    /* 3eme cas: le mot ne commence pas par la meme lettre que le */
+    /* 3�me cas: le mot ne commence pas par la m�me lettre que le */
     /* premier mot (courant) du dictionnaire */
     {
       _dicoInsererMot(mot, debut, &((*pa)->filsDroit));
     }
   else
-    /* 4eme cas: le mot a inserer commence par la meme lettre que */
+    /* 4�me cas: le mot � ins�rer commence par la m�me lettre que */
     /* le premier mot (courant) du dictionnaire */
     {
       if (debut == strlen(mot))
@@ -133,20 +143,20 @@ int _dicoNbOcc(char mot[], int debut, TArbre a)
     /* 1er cas: le dictionnaire est vide */
     return 0;
   else if (debut > strlen(mot))
-    /* 2eme cas: le mot tel quel n'existe pas */
+    /* 2�me cas: le mot tel quel n'existe pas */
     return 0;
   else if (mot[debut] < arbreRacineLettre(a))
-    /* 3eme cas: le mot cherche aurait du etre avant dans le dico */
+    /* 3�me cas: le mot cherch� aurait d� �tre avant dans le dico */
     return 0;
   else if (mot[debut] == arbreRacineLettre(a))
-    /* 4eme cas: le mot commence par la m�me lettre que le premier */
+    /* 4�me cas: le mot commence par la m�me lettre que le premier */
     /* mot du dictionnaire */
     if (mot[debut] == '\0')
       return arbreRacineNbOcc(a);
     else
       return _dicoNbOcc(mot, debut+1, arbreFilsGauche(a));
   else
-    /* 5 eme cas: le mot est �ventuellement plus loin dans le dico */
+    /* 5 �me cas: le mot est �ventuellement plus loin dans le dico */
     return _dicoNbOcc(mot, debut, arbreFilsDroit(a));
 }
 
