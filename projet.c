@@ -160,14 +160,15 @@ int main(int argc, char **argv)
   {
     printf("Combien de mots souhaitez vous entrer ? \n");
     scanf("%d", &count);
-    printf("%d", count);
     wordsdico = readWordsInput(count);
     InsererMots(&dico, wordsdico, count);
-    printf("\n Voici l arbre cree \n");
+    printf("\nVoici l'arbre cree \n");
     dicoAfficher(dico);
     printf("\n");
 
     delete_duplicates(wordsdico, &count);
+    printf("Voici le nombre d'occurences de chaque mot dans l'arbre \n");
+
     for (int i = 0; i < count; i++)
     {
       printf("\"%s\" \t -> %d\n", wordsdico[i], dicoNbOcc(wordsdico[i], dico));
@@ -176,18 +177,19 @@ int main(int argc, char **argv)
   else
   {
     char fileName[100];
-    printf("quel est le nom du fichier que vous souhaitez utilisez");
+    printf("quel est le nom du fichier que vous souhaitez utilisez \n");
     scanf("%s", &fileName);
 
     wordsdico = readWordsFile(fileName, &count);
     printf("%d mots lus du dictionnaire\n", count);
     InsererMots(&dico, wordsdico, count);
-    printf("\n Voici l arbre cree \n");
+    printf("\nVoici l'arbre cree \n");
     
-    print_tree(dico);
+    dicoAfficher(dico);
     printf("\n");
 
     delete_duplicates(wordsdico, &count);
+    printf("Voici le nombre d'occurences de chaque mot dans l'arbre \n");
     for (int i = 0; i < count; i++)
     {
       printf("\"%s\" \t -> %d\n", wordsdico[i], dicoNbOcc(wordsdico[i], dico));

@@ -4,6 +4,7 @@
         "dico.h": "c",
         "stdio.h": "c",
         "string.h": "c",
-        "ctype.h": "c"
+        "ctype.h": "c",
+        "arbre.h": "c"
     }
 }
