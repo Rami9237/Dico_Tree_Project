@@ -180,10 +180,11 @@ int main(int argc, char **argv)
     scanf("%s", &fileName);
 
     wordsdico = readWordsFile(fileName, &count);
-    // printf("Read %d words:\n", count);
+    printf("%d mots lus du dictionnaire\n", count);
     InsererMots(&dico, wordsdico, count);
     printf("\n Voici l arbre cree \n");
-    dicoAfficher(dico);
+    
+    print_tree(dico);
     printf("\n");
 
     delete_duplicates(wordsdico, &count);
