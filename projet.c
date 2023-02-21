@@ -27,14 +27,14 @@ char **readWordsFile(const char *fileName, int *wordCount)
   FILE *file = fopen(fileName, "r");
   if (file == NULL)
   {
-    printf("Error opening file.\n");
+    printf("le fichier n'existe pas.\n");
     return NULL;
   }
 
   char **words = (char **)malloc(MAX_WORDS * sizeof(char *));
   if (words == NULL)
   {
-    printf("Error allocating memory.\n");
+    printf("Erreur allocation memoire.\n");
     fclose(file);
     return NULL;
   }
@@ -55,7 +55,7 @@ char **readWordsFile(const char *fileName, int *wordCount)
       words[w] = (char *)malloc((i + 1) * sizeof(char));
       if (words[w] == NULL)
       {
-        printf("Error allocating memory.\n");
+        printf("Erreur allocation memoire.\n");
         fclose(file);
       }
       strcpy(words[w++], word);
@@ -70,7 +70,7 @@ char **readWordsFile(const char *fileName, int *wordCount)
     words[w] = (char *)malloc((i + 1) * sizeof(char));
     if (words[w] == NULL)
     {
-      printf("Error allocating memory.\n");
+      printf("Erreur allocation memoire.\n");
       fclose(file);
     }
     strcpy(words[w++], word);
@@ -152,9 +152,11 @@ int main(int argc, char **argv)
   char **wordsdico;
   dico = arbreConsVide();
   Affichagetitre("ARBRE DICTIONNAIRE");
-  
+  do {
   printf("Choisissez une option :\n[1] Entrer manuellement les mots du dictionnaire.\n[2] Utiliser un fichier pour ajouter les mots.\n");
   scanf("%s", input);
+  }while ((strcmp(input, "1"))&&(strcmp(input, "2")));
+
 
   if (!strcmp(input, "1"))
   {
@@ -177,10 +179,11 @@ int main(int argc, char **argv)
   else
   {
     char fileName[100];
+    do {
     printf("quel est le nom du fichier que vous souhaitez utilisez \n");
     scanf("%s", &fileName);
-
     wordsdico = readWordsFile(fileName, &count);
+    }while (wordsdico==NULL);
     printf("%d mots lus du dictionnaire\n", count);
     InsererMots(&dico, wordsdico, count);
     printf("\nVoici l'arbre cree \n");

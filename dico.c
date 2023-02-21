@@ -79,7 +79,7 @@ void _dicoInsererMot(char mot[], int debut, TArbre *pa)
       _dicoInsererMot(mot, debut + 1, &((*pa)->filsGauche));
   }
   else if (mot[debut] < arbreRacineLettre(*pa))
-  /* 2�me cas: le mot doit �tre plac� au d�but du dictionnaire */
+  /* 2eme cas: le mot doit etre place au debut du dictionnaire */
   {
     *pa = arbreCons(mot[debut], 0, arbreConsVide(), *pa);
     if (debut == strlen(mot))
@@ -88,7 +88,7 @@ void _dicoInsererMot(char mot[], int debut, TArbre *pa)
       _dicoInsererMot(mot, debut + 1, &((*pa)->filsGauche));
   }
   else if (mot[debut] > arbreRacineLettre(*pa))
-  /* 3�me cas: le mot ne commence pas par la m�me lettre que le */
+  /* 3eme cas: le mot ne commence pas par la meme lettre que le */
   /* premier mot (courant) du dictionnaire */
   {
     _dicoInsererMot(mot, debut, &((*pa)->filsDroit));
